@@ -2,15 +2,17 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator"
+    "sap/ui/model/FilterOperator",
+    "sap/m/MessageToast"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller 
      * @param {typeof sap.ui.model.json.JSONModel} JSONModel 
      * @param {typeof sap.ui.model.Filter} Filter 
      * @param {typeof sap.ui.model.FilterOperator} FilterOperator 
+     * @param {typeof sap.m.MessageToast} MessageToast
      */
-    function (Controller, JSONModel, Filter, FilterOperator) {
+    function (Controller, JSONModel, Filter, FilterOperator, MessageToast) {
         "use strict";
 
         return Controller.extend("logaligroup.employees.controller.MainView", {
@@ -22,24 +24,31 @@ sap.ui.define([
                 oJSONModel.loadData("./localService/mockdata/Employees.json", false);
                 oView.setModel(oJSONModel);
             },
-            onFilter: function(){
+            onFilter: function () {
                 var oJson = this.getView().getModel().getData(),
                     oList = this.getView().byId("tbEmpl"),
                     oBinding = oList.getBinding("items"),
                     filters = [];
-                
-                if(oJson.EmployeeId !== ''){
-                    filters.push( new Filter("EmployeeID", FilterOperator.EQ, oJson.EmployeeId));
+
+                if (oJson.EmployeeId !== '') {
+                    filters.push(new Filter("EmployeeID", FilterOperator.EQ, oJson.EmployeeId));
                 };
-                if(oJson.CountryKey !== ''){
-                    filters.push( new Filter("Country", FilterOperator.EQ, oJson.CountryKey));
+                if (oJson.CountryKey !== '') {
+                    filters.push(new Filter("Country", FilterOperator.EQ, oJson.CountryKey));
                 };
                 oBinding.filter(filters);
             },
-            onClearFilter: function(){
+            onClearFilter: function () {
                 var oModel = this.getView().getModel();
-                    oModel.setProperty("/EmployeeId", '');
-                    oModel.setProperty("/CountryKey",'');
+                oModel.setProperty("/EmployeeId", '');
+                oModel.setProperty("/CountryKey", '');
+            },
+            showPostalCode: function (oEvent) {
+                var itemPressed = oEvent.getSource(),
+                    oContext = itemPressed.getBindingContext(),
+                    objectContext = oContext.getObject();
+
+                    MessageToast.show(objectContext.PostalCode);
             }
             /*Deprecated
             onLiveChangeEmpl: function () {
