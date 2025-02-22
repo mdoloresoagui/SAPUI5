@@ -1,0 +1,117 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "sapui5-config1",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npx",
+      "windows": {
+        "runtimeExecutable": "npx.cmd"
+      },
+      "runtimeArgs": [
+        "fiori",
+        "run"
+      ],
+      "args": [
+        "--open",
+        "index.html",
+        "--config",
+        "ui5-local.yaml",
+        "--framework-version",
+        "1.131.1"
+      ],
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "outputCapture": "std",
+      "env": {
+        "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/sapui5\"}",
+        "FIORI_TOOLS_BACKEND_CONFIG": "[{\"url\":\"https://services.odata.org/\",\"path\":\"/V2\",\"destination\":\"Northwind\"}]",
+        "FIORI_TOOLS_URL_PARAMS": "sap-ui-xx-viewCache=false",
+        "FIORI_TOOLS_UI5_VERSION": "1.131.1",
+        "FIORI_TOOLS_UI5_URI": "https://ui5.sap.com"
+      }
+    },
+    {
+      "name": "sapui5-mockServer",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npx",
+      "windows": {
+        "runtimeExecutable": "npx.cmd"
+      },
+      "runtimeArgs": [
+        "fiori",
+        "run"
+      ],
+      "args": [
+        "--open",
+        "test/mockServer.html"
+      ],
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "outputCapture": "std",
+      "env": {
+        "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/sapui5\"}",
+        "FIORI_TOOLS_BACKEND_CONFIG": "[{\"url\":\"https://services.odata.org\",\"path\":\"/V2\",\"destination\":\"Northwind\"}]",
+        "FIORI_TOOLS_URL_PARAMS": "sap-ui-xx-viewCache=false",
+        "FIORI_TOOLS_UI5_VERSION": "1.132.1",
+        "FIORI_TOOLS_UI5_URI": "https://ui5.sap.com"
+      }
+    },
+    {
+      "name": "sapui5-QUnit",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npx",
+      "windows": {
+        "runtimeExecutable": "npx.cmd"
+      },
+      "runtimeArgs": [
+        "fiori",
+        "run"
+      ],
+      "args": [
+        "--open",
+        "test/unit/unitTests.qunit.html"
+      ],
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "outputCapture": "std",
+      "env": {
+        "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/sapui5\"}",
+        "FIORI_TOOLS_BACKEND_CONFIG": "[{\"url\":\"https://services.odata.org\",\"path\":\"/V2\",\"destination\":\"Northwind\"}]",
+        "FIORI_TOOLS_URL_PARAMS": "sap-ui-xx-viewCache=false"
+      }
+    },
+    {
+      "name": "sapui5-Opa5",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npx",
+      "windows": {
+        "runtimeExecutable": "npx.cmd"
+      },
+      "runtimeArgs": [
+        "fiori",
+        "run"
+      ],
+      "args": [
+        "--open",
+        "test/integration/opaTests.qunit.html"
+      ],
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "outputCapture": "std",
+      "env": {
+        "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/sapui5\"}",
+        "FIORI_TOOLS_BACKEND_CONFIG": "[{\"url\":\"https://services.odata.org\",\"path\":\"/V2\",\"destination\":\"Northwind\"}]",
+        "FIORI_TOOLS_URL_PARAMS": "sap-ui-xx-viewCache=false"
+      }
+    }
+  ]
+}

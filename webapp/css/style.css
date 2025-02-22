@@ -1,0 +1,9 @@
+.boldElements{
+    font-weight: bold;
+}
+.productRating{
+padding: 0.75 rm;
+}
+.productRating.sapMRI {
+    vertical-align: initial;
+}
