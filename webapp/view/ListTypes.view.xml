@@ -1,0 +1,81 @@
+<mvc:View controllerName="logaligroup.list.controller.ListTypes"
+    xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+    xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout" displayBlock="true">
+    <Shell>
+        <App id="app">
+            <Page id="page" title="{i18n>title}">
+            <content>
+                <IconTabBar >
+                    <items>
+                        <IconTabFilter text="{i18n>TabObjectListText}">
+                            <List items="{ path : '/Products', 
+                                           filters : [ { path: 'Brand', 
+                                                         operator : 'EQ', 
+                                                         value1 : 'Compaq' } ] }" >
+                                <items>
+                                    <ObjectListItem title="{Material} {Brand} {Model}" number="{Price}" numberUnit="{Currency}" type="Detail">
+                                        <ObjectAttribute text="{Brand}"/>
+                                        <ObjectAttribute text="{Weight}"/>
+                                    </ObjectListItem>
+                                </items>
+                            </List>
+                        </IconTabFilter>
+                        <IconTabFilter text="{i18n>TabListStandText}">
+                            <Select selectedKey="{/typeSelection}">
+                                <items>
+                                    <core:Item key="None" text="{i18n>None}"/>
+                                    <core:Item key="MultiSelect" text="{i18n>MultiSelect}"/>
+                                    <core:Item key="SingleSelect" text="{i18n>SingleSelect}"/>
+                                    <core:Item key="SingleSelectLeft" text="{i18n>SingleSelectLeft}"/>
+                                    <core:Item key="SingleSelectMaster" text="{i18n>SingleSelectMaster}"/>
+                                </items>
+                            </Select>
+                            <Button text="{i18n>BtnSelItTxt}" press="onShowSelItem" class="sapUiSmallMarginBegin" />
+                            <Button text="{i18n>BtnDelItTxt}" press="onDelSelItem" class="sapUiSmallMarginBegin" />
+                            <List id="StdList" items="{ path: '/Products',
+                                           sorter: { path: 'Brand', descending: false, group: true} }"
+                                  mode="{/typeSelection}">
+                                <items>
+                                    <StandardListItem title="{Material} {Brand} {Model}" description="{Weight}" info="{Price} {Currency}" type="Active"/>
+                                </items>
+                            </List>
+                        </IconTabFilter>
+                        <IconTabFilter text="{i18n>TabInputListText}" >
+                            <List items="{/Products}" mode="Delete" delete="onDeleteInputRow">
+                                <items>
+                                    <InputListItem label="{Brand}">
+                                        <Select items="{Properties}">
+                                            <core:Item key="{Id}" text="{Text}"/>
+                                        </Select>
+                                    </InputListItem>
+                                </items>
+                            </List>
+                        </IconTabFilter>
+                        <IconTabFilter text="{i18n>TabNotifListText}">
+                            <List items="{/News}">
+                                <items>
+                                    <NotificationListItem title="{Title}" description="{Description}" unread="{Unread}" 
+                                                          priority="{Priority}" showCloseButton="{ShowCloseButton}" authorName="{Author}"/>
+                                </items>
+                            </List>
+                        </IconTabFilter>
+                        <IconTabFilter text="{i18n>TabCustomListText}">
+                            <List items="{/News}">
+                                <items>
+                                    <CustomListItem >
+                                        <layout:Grid defaultSpan="XL3 L3 M6 S12">
+                                            <Text text="{Title}"/>
+                                            <Text text="{Author}"/>
+                                            <Text text="{Description}"/>
+                                        </layout:Grid>
+                                    </CustomListItem>
+                                </items>
+                            </List>
+                        </IconTabFilter>
+                    </items>
+                </IconTabBar>
+            </content>
+            </Page>
+        </App> 
+    </Shell>
+</mvc:View>
