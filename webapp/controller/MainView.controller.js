@@ -17,38 +17,66 @@ sap.ui.define([
 
         return Controller.extend("logaligroup.employees.controller.MainView", {
             onInit() {
-                var oJSONModel = new JSONModel(),
-                    oView = this.getView(),
-                    i18nBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+                var oJSONModelEmp = new JSONModel(),
+                    oJSONModelCtr = new JSONModel(),
+                    oView = this.getView();
 
-                oJSONModel.loadData("./localService/mockdata/Employees.json", false);
-                oView.setModel(oJSONModel);
+                oJSONModelEmp.loadData("./localService/mockdata/Employees.json", false);
+                oView.setModel(oJSONModelEmp, "Employee");
+
+                oJSONModelCtr.loadData("./localService/mockdata/Countries.json", false);
+                oView.setModel(oJSONModelCtr, "Countries");
+
+                //JSON - Configuración visibilidad Ciudad
+                var oJSONConfigView = new JSONModel({
+                    visibleID: true,
+                    visibleName: true,
+                    visibleCountry: true,
+                    visibleCity: false,
+                    visibleBtnCity: true,
+                    HideBtnCity: false
+                });
+                oView.setModel(oJSONConfigView, "ConfigView");
             },
             onFilter: function () {
-                var oJson = this.getView().getModel().getData(),
+                var oJsonCtr = this.getView().getModel("Countries").getData(),
                     oList = this.getView().byId("tbEmpl"),
                     oBinding = oList.getBinding("items"),
                     filters = [];
 
-                if (oJson.EmployeeId !== '') {
-                    filters.push(new Filter("EmployeeID", FilterOperator.EQ, oJson.EmployeeId));
+                if (oJsonCtr.EmployeeId !== '') {
+                    filters.push(new Filter("EmployeeID", FilterOperator.EQ, oJsonCtr.EmployeeId));
                 };
-                if (oJson.CountryKey !== '') {
-                    filters.push(new Filter("Country", FilterOperator.EQ, oJson.CountryKey));
+                if (oJsonCtr.CountryKey !== '') {
+                    filters.push(new Filter("Country", FilterOperator.EQ, oJsonCtr.CountryKey));
                 };
                 oBinding.filter(filters);
             },
             onClearFilter: function () {
-                var oModel = this.getView().getModel();
+                var oModel = this.getView().getModel("Countries");
                 oModel.setProperty("/EmployeeId", '');
                 oModel.setProperty("/CountryKey", '');
             },
             showPostalCode: function (oEvent) {
                 var itemPressed = oEvent.getSource(),
-                    oContext = itemPressed.getBindingContext(),
+                    oContext = itemPressed.getBindingContext("Employee"),
                     objectContext = oContext.getObject();
 
-                    MessageToast.show(objectContext.PostalCode);
+                MessageToast.show(objectContext.PostalCode);
+            },
+            onShowCity: function(){
+                var oConfigView = this.getView().getModel("ConfigView");
+                
+                oConfigView.setProperty("/visibleCity", true);
+                oConfigView.setProperty("/visibleBtnCity", false);
+                oConfigView.setProperty("/HideBtnCity", true);
+            },
+            onHideCity: function(){
+                var oConfigView = this.getView().getModel("ConfigView");
+
+                oConfigView.setProperty("/visibleCity", false);
+                oConfigView.setProperty("/visibleBtnCity", true);
+                oConfigView.setProperty("/HideBtnCity", false);
             }
             /*Deprecated
             onLiveChangeEmpl: function () {

@@ -1,19 +1,17 @@
 <mvc:View controllerName="logaligroup.employees.controller.MainView"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m"
-    xmlns:core="sap.ui.core"
-    displayBlock="true">
+    xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+    xmlns:core="sap.ui.core" displayBlock="true">
     <Shell>
     <App id="app">
         <Page id="App" title="{i18n>title}">
             <content>
                 <HBox >
                     <Label id="LbEmpl" text="{i18n>LbTxtEmp}" class="sapUiSmallMargin" labelFor="InputEmpl"/>
-                    <Input id="InputEmpl" value="{/EmployeeId}" maxLength="6" width="200px" class="sapUiSmallMarginEnd"/>
+                    <Input id="InputEmpl" value="{Countries>/EmployeeId}" maxLength="6" width="200px" class="sapUiSmallMarginEnd"/>
                     <Label id="LbCountry" text="{i18n>LbTxtCountry}" class="sapUiSmallMargin" labelFor="slCountry" visible="true"/>
-                    <Select id="slCountry" selectedKey="{/CountryKey}" items="{/ListCountry}" forceSelection="false" visible="true">
+                    <Select id="slCountry" selectedKey="{Countries>/CountryKey}" items="{Countries>/ListCountry}" forceSelection="false" visible="true">
                         <items>
-                            <core:Item key="{Key}" text="{Text}"/>
+                            <core:Item key="{Countries>Key}" text="{Countries>Text}"/>
                         </items>
                     </Select>
                     <Button id="BtnFilter" text="{i18n>btnFilter}" icon="sap-icon://search" press="onFilter" class="sapUiSmallMarginEnd"/>
@@ -21,24 +19,26 @@
                 </HBox>
                 <HBox >
                     <Panel>
-                        <Table id="tbEmpl" items="{/Employees}" >
+                        <Button id="BtnViewCity" text="{i18n>ViewCityText}" visible="{ConfigView>/visibleBtnCity}" press="onShowCity"/>
+                        <Button id="BtnHideCity" text="{i18n>HideCityText}" visible="{ConfigView>/HideBtnCity}" press="onHideCity"/>
+                        <Table id="tbEmpl" items="{Employee>/Employees}" >
                             <columns>
-                                <Column >
+                                <Column visible="{ConfigView>/visibleID}">
                                     <header>
                                         <Label text="{i18n>LbEmplIdTb}"/>
                                     </header>
                                 </Column>
-                                 <Column >
+                                 <Column visible="{ConfigView>/visibleName}">
                                     <header>
                                         <Label text="{i18n>LbEmplNameTb}"/>
                                     </header>
                                 </Column>
-                                 <Column >
+                                 <Column visible="{ConfigView>/visibleCountry}">
                                     <header>
                                         <Label text="{i18n>LbCountryTb}"/>
                                     </header>
                                 </Column>
-                                 <Column >
+                                 <Column visible="{ConfigView>/visibleCity}">
                                     <header>
                                         <Label text="{i18n>LbCityTb}"/>
                                     </header>
@@ -47,10 +47,10 @@
                             <items>
                                 <ColumnListItem type="Active" press="showPostalCode" >
                                     <cells>
-                                        <Label text="{EmployeeID}" />
-                                        <Label text="{LastName}, {FirstName}"/>
-                                        <Label text="{Country}" />
-                                        <Label text="{City}" />
+                                        <Label text="{Employee>EmployeeID}" />
+                                        <Label text="{Employee>LastName}, {Employee>FirstName}"/>
+                                        <Label text="{Employee>Country}" />
+                                        <Label text="{Employee>City}" />
                                     </cells>
                                 </ColumnListItem>
                             </items>
