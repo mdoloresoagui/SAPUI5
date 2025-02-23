@@ -45,7 +45,7 @@
                                 </Column>
                             </columns>
                             <items>
-                                <ColumnListItem type="Active" press="showPostalCode" >
+                                <ColumnListItem type="Active" press="showOrders" >
                                     <cells>
                                         <Label text="{Employee>EmployeeID}" />
                                         <Label text="{Employee>LastName}, {Employee>FirstName}"/>
@@ -55,6 +55,7 @@
                                 </ColumnListItem>
                             </items>
                         </Table>
+                        <HBox id="TbOrders"/>
                     </Panel>
                 </HBox>
          </content>
