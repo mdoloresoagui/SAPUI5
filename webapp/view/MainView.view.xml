@@ -17,47 +17,7 @@
                     <Button id="BtnFilter" text="{i18n>btnFilter}" icon="sap-icon://search" press="onFilter" class="sapUiSmallMarginEnd"/>
                     <Button id="BtnClearFilter" text="{i18n>btnClearFilter}" icon="sap-icon://clear-filter" press="onClearFilter" class="sapUiSmallMarginEnd"/>
                 </HBox>
-                <HBox >
-                    <Panel>
-                        <Button id="BtnViewCity" text="{i18n>ViewCityText}" visible="{ConfigView>/visibleBtnCity}" press="onShowCity"/>
-                        <Button id="BtnHideCity" text="{i18n>HideCityText}" visible="{ConfigView>/HideBtnCity}" press="onHideCity"/>
-                        <Table id="tbEmpl" items="{Employee>/Employees}" >
-                            <columns>
-                                <Column visible="{ConfigView>/visibleID}">
-                                    <header>
-                                        <Label text="{i18n>LbEmplIdTb}"/>
-                                    </header>
-                                </Column>
-                                 <Column visible="{ConfigView>/visibleName}">
-                                    <header>
-                                        <Label text="{i18n>LbEmplNameTb}"/>
-                                    </header>
-                                </Column>
-                                 <Column visible="{ConfigView>/visibleCountry}">
-                                    <header>
-                                        <Label text="{i18n>LbCountryTb}"/>
-                                    </header>
-                                </Column>
-                                 <Column visible="{ConfigView>/visibleCity}">
-                                    <header>
-                                        <Label text="{i18n>LbCityTb}"/>
-                                    </header>
-                                </Column>
-                            </columns>
-                            <items>
-                                <ColumnListItem type="Active" press="showOrders" >
-                                    <cells>
-                                        <Label text="{Employee>EmployeeID}" />
-                                        <Label text="{Employee>LastName}, {Employee>FirstName}"/>
-                                        <Label text="{Employee>Country}" />
-                                        <Label text="{Employee>City}" />
-                                    </cells>
-                                </ColumnListItem>
-                            </items>
-                        </Table>
-                        <HBox id="TbOrders"/>
-                    </Panel>
-                </HBox>
+                <core:Fragment fragmentName="logaligroup.employees.fragment.TableEmployee" type="XML"/>
          </content>
         </Page>
     </App>

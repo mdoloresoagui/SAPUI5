@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+<Panel>
+    <Button id="BtnViewCity" text="{i18n>ViewCityText}" visible="{ConfigView>/visibleBtnCity}" press="onShowCity"/>
+    <Button id="BtnHideCity" text="{i18n>HideCityText}" visible="{ConfigView>/HideBtnCity}" press="onHideCity"/>
+         <Table id="tbEmpl" items="{Employee>/Employees}" >
+            <columns>
+                <Column visible="{ConfigView>/visibleID}">
+                    <header>
+                        <Label text="{i18n>LbEmplIdTb}"/>
+                    </header>
+                </Column>
+                <Column visible="{ConfigView>/visibleName}">
+                    <header>
+                        <Label text="{i18n>LbEmplNameTb}"/>
+                    </header>
+                </Column>
+                <Column visible="{ConfigView>/visibleCountry}">
+                    <header>
+                        <Label text="{i18n>LbCountryTb}"/>
+                    </header>
+                </Column>
+                <Column visible="{ConfigView>/visibleCity}">
+                    <header>
+                        <Label text="{i18n>LbCityTb}"/>
+                    </header>
+                </Column>
+                 <Column width="100px">
+                    <header>
+                        <Label text="{i18n>LbShowDetails}"/>
+                    </header>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Label text="{Employee>EmployeeID}" />
+                        <Label text="{Employee>LastName}, {Employee>FirstName}"/>
+                        <Label text="{Employee>Country}" />
+                        <Label text="{Employee>City}" />
+                        <core:Icon src="sap-icon://show" press="showOrders" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    <HBox id="TbOrders"/>
+</Panel>
+</core:FragmentDefinition> 
