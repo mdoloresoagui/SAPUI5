@@ -65,7 +65,7 @@ sap.ui.define([
                 this._oDialogOrder.close();
             },
             showEmpl: function (oEvent) {
-                var path= oEvent.getSource().getBindingContext("Employee").getPath();
+                var path = oEvent.getSource().getBindingContext("Employee").getPath();
                 this._bus.publish("flexible", "showEmployee", path);
             }
         });

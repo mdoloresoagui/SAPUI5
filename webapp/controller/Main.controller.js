@@ -29,15 +29,20 @@ sap.ui.define([
                     HideBtnCity: false
                 });
                 oView.setModel(oJSONConfigView, "ConfigView");
- 
+
                 this._bus = sap.ui.getCore().getEventBus();
                 this._bus.subscribe("flexible", "showEmployee", this.showEmployeeDetail, this);
             },
-            showEmployeeDetail: function(category,nameEvent,path){
+            showEmployeeDetail: function (category, nameEvent, path) {
                 var detailView = this.getView("").byId("detailEmpView");
                 detailView.bindElement("Employee>" + path);
                 //Modificar el Layout
                 this.getView().getModel("Layouts").setProperty("/ActiveKey", "TwoColumnsMidExpanded");
+
+                //Binding Elements
+                var oJSONModelIncident = new JSONModel([]);
+                detailView.setModel(oJSONModelIncident, "incidenceModel");
+                detailView.byId("tableInci").removeAllContent();
             }
         });
     });

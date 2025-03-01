@@ -47,5 +47,15 @@
                 </items>
             </FlexBox>
         </Panel>
+        <Panel class="sapUiSizeCompact" backgroundDesign="Transparent">
+            <headerToolbar>
+                <Toolbar>
+                    <Title text="{i18n>TextIncident} {= ${Employee>Country} !== 'US' ? ${i18n>europe} : ${i18n>us}} "/>
+                    <ToolbarSpacer />
+                    <Button text="{i18n>BtnCreateInci}" press="onCreateInci"/>
+                </Toolbar>
+            </headerToolbar>
+            <Panel id="tableInci" class="sapUiNoContentPadding" backgroundDesign="Transparent"></Panel>
+        </Panel>
     </Page>
 </mvc:View>
