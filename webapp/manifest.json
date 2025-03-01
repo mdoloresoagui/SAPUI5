@@ -90,22 +90,30 @@
             },
             "routes": [
                 {
-                    "name": "RouteMainView",
+                    "name": "RouteMain",
                     "pattern": ":?query:",
                     "target": [
-                        "TargetMainView"
+                        "TargetMain"
                     ]
                 }
             ],
             "targets": {
-                "TargetMainView": {
+                "TargetMain": {
+                    "id": "Main",
+                    "name": "Main"
+                },
+                "TargetMasterView": {
+                    "id": "MasterEmployee",
+                    "name": "MasterEmployee"
+                },
+                "TargetView": {
                     "id": "MainView",
                     "name": "MainView"
                 }
             }
         },
         "rootView": {
-            "viewName": "logaligroup.employees.view.MainView",
+            "viewName": "logaligroup.employees.view.Main",
             "type": "XML",
             "id": "App"
         }
